@@ -1,6 +1,7 @@
 # Classification-with-BOW
 
-שאלה 1
+# שאלה 1
+
 חלקו את הנתונים לנתוני אימון – ,train-set כאשר 60% מהתמונות ישמשו לאימון, 20% לוולידציה ו20%- לבדיקה.
 שלב האימון – יתבצע על ה- train-set בלבד:
 .1  חישוב מאפיינים מכל התמונות. )אפשר להשתמש בפונקציות לזיהוי נקודות ומאפיינים של
@@ -26,20 +27,20 @@
 
 import torch.nn as nn
  
-BoW with Deep Learning Features – 2 שאלה
+BoW with Deep Learning Features – 2 שאלה #
 בחלק זה נממש ייצוג BOW ע"י חישוב מפות מאפיינים מ.CNN-
 כדי לחשב מאפיינים ע"י רשת VGG שאומנה על ImageNet נשתמש בקוד הבא:
  
 import torchvision.models as models
 import torchvision.transforms as transforms from PIL import Image
 
-# Load a pre-trained vgg-16 model model = models.vgg16(pretrained=True)
+Load a pre-trained vgg-16 model model = models.vgg16(pretrained=True)
 
-# Remove the classifier (fully connected layers) to get the feature map from the last conv layer feature_extractor = nn.Sequential(*list(model.children())[:-2])
+Remove the classifier (fully connected layers) to get the feature map from the last conv layer feature_extractor = nn.Sequential(*list(model.children())[:-2])
 
-# Set the feature extractor to evaluation mode feature_extractor.eval()
+Set the feature extractor to evaluation mode feature_extractor.eval()
 
-# Image transformation (maintain original size) transform = transforms.Compose([
+Image transformation (maintain original size) transform = transforms.Compose([
 transforms.ToTensor(), # Convert to tensor transforms.Normalize( # Normalize to ImageNet mean and std mean=[0.485, 0.456, 0.406],
 std=[0.229, 0.224, 0.225]
 )
